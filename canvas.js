@@ -1,9 +1,9 @@
 var canvas = document.querySelector('canvas');
 
-canvas.width = window.innerWidth * 0.99;
+canvas.width = window.innerWidth * 0.95;
 canvas.height = window.innerHeight * 0.8;
 
-canvas.style = "background : #DDDDDD";
+canvas.style = "background : #DDDDDD;";
 
 var context = canvas.getContext('2d');
 
@@ -20,10 +20,10 @@ function Circle(){
     this.colourIndex = 2;
 
     this.radius = (Math.random() + 0.2) * 30;
-    //this.x = Math.random() * (canvas.width - this.radius * 2) + this.radius;
-    //this.y = Math.random() * (canvas.height - this.radius * 2) + this.radius;
+
     this.x = canvas.width/2;
     this.y = canvas.height/2;
+
     this.xVel = (Math.random() - 0.5) * 6;
     this.yVel = (Math.random() - 0.5) * 6;
 
@@ -51,7 +51,6 @@ function Circle(){
         }
     
         if(this.y + this.radius >= canvas.height){
-            //this.yVel *= -1;
             this.yVel = (Math.random() + 1) * -4;
             this.colourIndex = Math.floor(Math.random() * this.coloursArray.length);
         }
@@ -61,12 +60,14 @@ function Circle(){
 }
 
 var circles = []
+var count = 0;
 
 animate();
 function animate(){
     context.clearRect(0, 0, canvas.width, canvas.height);
+    count++;
 
-    if(circles.length < 500){
+    if(circles.length < 50 && count > 100){
         circles.push(new Circle(200, 200));
     }
 
